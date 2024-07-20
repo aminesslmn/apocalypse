@@ -7,7 +7,7 @@ class ExploreList extends StatelessWidget {
   const ExploreList({Key? key, required this.imageAssetPaths, required this.imageTitles})
       : super(key: key);
 
-  @Override
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 200.0, // Adjust container height as needed

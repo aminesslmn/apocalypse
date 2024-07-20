@@ -31,8 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
   
-  flutter_svg: ^1.0.0
-
+  dotted_border: ^2.0.0
+  flutter_svg: ^2.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -66,7 +66,17 @@ flutter:
   assets:
     - assets/
     - assets/icons/
-
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+        - asset: assets/fonts/Lato-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Lato-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Lato-BoldItalic.ttf
+          weight: 700
+          style: italic
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

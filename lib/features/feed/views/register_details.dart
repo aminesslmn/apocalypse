@@ -1,4 +1,5 @@
 import 'package:apocalypsea2sv/config/ui_colors.dart';
+import 'package:apocalypsea2sv/features/feed/components/register_button.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,8 +23,6 @@ class _RegisterDetailsScreenState extends State<RegisterDetailsScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final authProvider = Provider.of<auth_provider.AuthProvider>(context);
-    print("#######################################");
-    print(authProvider.fullName);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -42,7 +41,7 @@ class _RegisterDetailsScreenState extends State<RegisterDetailsScreen> {
             bottom: 0,
             child: SizedBox(
               width: screenWidth,
-              height: MediaQuery.of(context).size.height * 0.8,
+              height: MediaQuery.of(context).size.height * 0.9,
               child: Image.asset(
                 'assets/wave.png',
                 fit: BoxFit.fill,
@@ -68,10 +67,10 @@ class _RegisterDetailsScreenState extends State<RegisterDetailsScreen> {
                   ),
                   // Registration form
                   const SizedBox(
-                    height: 80,
+                    height: 100,
                   ),
                   Container(
-                    width: screenWidth * 0.9,
+                    width: screenWidth * 0.85,
                     padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -216,46 +215,13 @@ class _RegisterDetailsScreenState extends State<RegisterDetailsScreen> {
                             },
                           ),
                           const SizedBox(height: 20),
-                          ElevatedButton(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                // Save additional user details in AuthProvider
-                                authProvider.setUserDetails(
-                                  _ageController.text.trim(),
-                                  _genderController.text.trim(),
-                                  selectedHealthCondition,
-                                  selectedAllergy,
-                                );
-
-                                // Perform the final Firebase signup
-                                await authProvider
-                                    .createUserWithEmailAndPassword(
-                                  authProvider.email!,
-                                  'your_password_here', // replace with your actual password
-                                );
-
-                                if (authProvider.error == null) {
-                                  // Navigate to the next screen
-                                  Navigator.pushNamed(context, '/next-screen');
-                                }
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 30),
-                              backgroundColor: AppColors.main,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            child: const Text(
-                              'Next',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
+                          RegisterButton(
+                              formKey: _formKey,
+                              authProvider: authProvider,
+                              ageController: _ageController,
+                              genderController: _genderController,
+                              selectedHealthCondition: selectedHealthCondition,
+                              selectedAllergy: selectedAllergy),
                           const SizedBox(height: 10),
                           if (authProvider.isLoading)
                             const CircularProgressIndicator(),
@@ -267,19 +233,6 @@ class _RegisterDetailsScreenState extends State<RegisterDetailsScreen> {
                                 style: const TextStyle(color: Colors.red),
                               ),
                             ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextButton(
-                              onPressed: () {
-                                // Skip and navigate to the next screen
-                                Navigator.pushNamed(context, '/next-screen');
-                              },
-                              child: const Text(
-                                'Skip',
-                                style: TextStyle(color: AppColors.main),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),

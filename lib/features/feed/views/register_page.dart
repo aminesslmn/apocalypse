@@ -53,9 +53,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(height: 50), // Add some space at the top
+                  // Add some space at the top
                   Column(
                     children: [
+                      const SizedBox(
+                        height: 40,
+                      ),
                       Image.asset(
                         'assets/logo.png',
                         fit: BoxFit.fill,
@@ -66,10 +69,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   // Registration form
                   const SizedBox(
-                    height: 100,
+                    height: 150,
                   ),
                   Container(
-                    width: screenWidth * 0.9,
+                    width: screenWidth * 0.85,
                     padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),

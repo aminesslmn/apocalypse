@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "117202129029",
+    "project_id": "apocalypse-eca02",
+    "storage_bucket": "apocalypse-eca02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117202129029:android:c376f7858fde420f9359ec",
+        "android_client_info": {
+          "package_name": "com.balsam.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPTbtzWsQqqsWuiDHOm4yFJNSqnwmY-QE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117202129029:android:ca9843eb280415689359ec",
+        "android_client_info": {
+          "package_name": "com.example.apocalypsea2sv"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPTbtzWsQqqsWuiDHOm4yFJNSqnwmY-QE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,15 @@
+import 'package:apocalypsea2sv/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'features/feed/views/home_page.dart'; // Assuming your HomePage view is located here
 import 'config/ui_colors.dart'; // Assuming your UI colors are defined here
 
 void main() {
+
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 

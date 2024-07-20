@@ -1,14 +1,14 @@
 import 'package:apocalypsea2sv/config/ui_colors.dart';
 import 'package:flutter/material.dart';
 
-class RegistrationScreenGeneric extends StatefulWidget {
-  const RegistrationScreenGeneric({super.key});
+class RegisterDetailsScreen extends StatefulWidget {
+  const RegisterDetailsScreen({super.key});
 
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreenGeneric> {
+class _RegistrationScreenState extends State<RegisterDetailsScreen> {
   final Map<String, dynamic> formFields = {
     'Age': {
       'label': 'Age',

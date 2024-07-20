@@ -10,6 +10,8 @@ import 'package:apocalypsea2sv/features/feed/components/header.dart';
 import 'package:apocalypsea2sv/features/feed/components/profile.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -69,7 +71,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: const Text('Home Page'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -77,20 +79,20 @@ class _HomePageState extends State<HomePage> {
               const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 2.0), // Adjust padding
           child: Column(
             children: [
-              Header(headerText: "Welcome!"),
-              UserProfile(
+              const Header(headerText: "Welcome!"),
+              const UserProfile(
                 userName: 'Mohcen Chouireb',
                 userEmail: 'raid.ouahioune@ensia.edu.dz',
               ),
-              SizedBox(height: 12.0),
-              HealthTip(
+              const SizedBox(height: 12.0),
+              const HealthTip(
                 dailyTip:
                     "For strong bones: Include calcium-rich foods like dairy products, leafy greens, and tofu in your diet. Consider taking a vitamin D supplement if needed.",
               ),
-              SizedBox(height: 12.0),
+              const SizedBox(height: 12.0),
               Column(
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(5.0), // Adjust padding
                     child: Align(
                       alignment: Alignment.topLeft,
@@ -107,10 +109,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              SizedBox(height: 5.0),
+              const SizedBox(height: 5.0),
               Column(
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(5.0), // Adjust padding
                     child: Align(
                       alignment: Alignment.topLeft,
@@ -121,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: 100.0, // Adjust container height as needed
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,

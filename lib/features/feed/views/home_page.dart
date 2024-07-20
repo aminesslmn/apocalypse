@@ -1,9 +1,11 @@
+// home_page.dart
+
+import 'package:flutter/material.dart';
 import 'package:apocalypsea2sv/config/ui_colors.dart';
 import 'package:apocalypsea2sv/features/feed/components/explore_list.dart';
 import 'package:apocalypsea2sv/features/feed/components/health_tip.dart';
 import 'package:apocalypsea2sv/features/feed/components/more_features.dart';
-import 'package:apocalypsea2sv/features/feed/components/navbar.dart';
-import 'package:flutter/material.dart';
+import 'package:apocalypsea2sv/features/feed/components/navbar.dart'; // Import your custom navbar
 import 'package:apocalypsea2sv/features/feed/components/header.dart';
 import 'package:apocalypsea2sv/features/feed/components/profile.dart';
 
@@ -15,13 +17,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
+  // List of screen names corresponding to each index
+  final List<String> _screenNames = [
+    'Home',
+    'Diagnosis',
+    'Tips',
+    'Profile',
+  ];
+
   void _onNavBarItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
 
-    // Add navigation logic here
-    // For example, you might use Navigator.pushNamed() or similar
+    // Add navigation logic here if necessary
   }
 
   @override
@@ -41,19 +50,19 @@ class _HomePageState extends State<HomePage> {
       {
         'svgPath': "assets/icons/camera.svg",
         'title': 'Check Skin Health',
-        'backgroundColor': AppColors.secondaryColor1, 
+        'backgroundColor': AppColors.secondaryColor1,
         'iconColor': AppColors.iconColor1,
       },
       {
         'svgPath': "assets/icons/archive.svg",
         'title': 'Diagnoses History',
-        'backgroundColor': AppColors.secondaryColor2, 
+        'backgroundColor': AppColors.secondaryColor2,
         'iconColor': AppColors.iconColor2,
       },
       {
         'svgPath': "assets/icons/lamp-charge.svg",
         'title': 'More Health Tips',
-        'backgroundColor': AppColors.secondaryColor3, 
+        'backgroundColor': AppColors.secondaryColor3,
         'iconColor': AppColors.iconColor3,
       },
     ];
@@ -64,7 +73,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 2.0), // Adjust padding
+          padding:
+              const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 2.0), // Adjust padding
           child: Column(
             children: [
               Header(headerText: "Welcome!"),
@@ -133,10 +143,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      //bottomNavigationBar: BottomNavBar(
-      //  selectedIndex: _selectedIndex,
-      //  onItemTapped: _onNavBarItemTapped,
-      //),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: _selectedIndex, // Pass the current index here
+        onItemTapped: _onNavBarItemTapped,
+        screenNames: _screenNames, // Pass the screen names list
+      ),
     );
   }
 }

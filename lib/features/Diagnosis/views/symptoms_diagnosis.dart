@@ -63,8 +63,8 @@ class _InputContainerState extends State<InputContainer> {
 
   void _handleButtonPress() {
     final inputText = _textController.text;
-    // here we send the inputText to the API
-    print('User typed: $inputText');
+    // here we send the inputText to the API (sa7a mohcen)
+    print('User typed: $inputText'); //debuuuuuuuuuuuuuuuug
     _textController.clear();
     widget.onSubmit(); // Notify parent that submit was clicked
   }

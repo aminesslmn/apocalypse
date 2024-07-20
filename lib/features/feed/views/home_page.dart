@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  final int _selectedIndex = 0;
 
   // List of screen names corresponding to each index
   final List<String> _screenNames = [
@@ -29,16 +29,10 @@ class _HomePageState extends State<HomePage> {
   // List of pages to navigate
   final List<Widget> _screens = [
     const HomeContentPage(), // Page 0
-    // Page 1
+    // Page 1 (amine)
     const DailyTipsPage(), // Page 2
-    // Page 3
+    // Page 3 (not yet)
   ];
-
-  void _onNavBarItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

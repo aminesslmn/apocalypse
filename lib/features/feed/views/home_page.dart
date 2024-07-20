@@ -9,12 +9,14 @@ import 'package:apocalypsea2sv/features/feed/components/profile.dart';
 import 'package:apocalypsea2sv/features/Diagnosis/views/daily_tips.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  final int _selectedIndex = 0;
 
   // List of screen names corresponding to each index
   final List<String> _screenNames = [
@@ -26,12 +28,11 @@ class _HomePageState extends State<HomePage> {
 
   // List of pages to navigate
   final List<Widget> _screens = [
-    HomeContentPage(),   // Page 0
+    const HomeContentPage(), // Page 0
     // Page 1 (amine)
-    DailyTipsPage(),     // Page 2
+    const DailyTipsPage(), // Page 2
     // Page 3 (not yet)
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +41,14 @@ class _HomePageState extends State<HomePage> {
         title: Text(_screenNames[_selectedIndex]),
       ),
       body: _screens[_selectedIndex], // Display the current page
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
 
 class HomeContentPage extends StatelessWidget {
+  const HomeContentPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Replace these with actual asset paths in your project's assets folder
@@ -82,24 +85,25 @@ class HomeContentPage extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 2.0), // Adjust padding
+        padding:
+            const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 2.0), // Adjust padding
         child: Column(
           children: [
-            Header(headerText: "Welcome!"),
-            UserProfile(
+            const Header(headerText: "Welcome!"),
+            const UserProfile(
               userName: 'Mohcen Chouireb',
               userEmail: 'raid.ouahioune@ensia.edu.dz',
             ),
-            SizedBox(height: 12.0),
-            HealthTip(
+            const SizedBox(height: 12.0),
+            const HealthTip(
               color: AppColors.secondaryColor3,
               dailyTip:
                   "For strong bones: Include calcium-rich foods like dairy products, leafy greens, and tofu in your diet. Consider taking a vitamin D supplement if needed.",
             ),
-            SizedBox(height: 12.0),
+            const SizedBox(height: 12.0),
             Column(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(5.0), // Adjust padding
                   child: Align(
                     alignment: Alignment.topLeft,
@@ -116,10 +120,10 @@ class HomeContentPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 5.0),
+            const SizedBox(height: 5.0),
             Column(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(5.0), // Adjust padding
                   child: Align(
                     alignment: Alignment.topLeft,
@@ -130,7 +134,7 @@ class HomeContentPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 100.0, // Adjust container height as needed
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,

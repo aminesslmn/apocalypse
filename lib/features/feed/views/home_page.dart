@@ -27,16 +27,11 @@ class _HomePageState extends State<HomePage> {
   // List of pages to navigate
   final List<Widget> _screens = [
     HomeContentPage(),   // Page 0
-    // Page 1
+    // Page 1 (amine)
     DailyTipsPage(),     // Page 2
-    // Page 3
+    // Page 3 (not yet)
   ];
 
-  void _onNavBarItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

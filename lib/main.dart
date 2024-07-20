@@ -52,7 +52,7 @@ class AppWrapper extends StatelessWidget {
     if (authProvider.user != null) {
       return const HomePage();
     } else {
-      return const LoginScreen();
+      return const WelcomePage();
     }
   }
 }

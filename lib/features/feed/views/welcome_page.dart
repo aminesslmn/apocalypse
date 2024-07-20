@@ -79,7 +79,7 @@ class WelcomePage extends StatelessWidget {
                             padding: const EdgeInsets.all(20.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                // Define your action here
+                                Navigator.pushNamed(context, '/register');
                               },
                               style: ElevatedButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(

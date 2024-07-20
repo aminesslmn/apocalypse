@@ -2,10 +2,10 @@ import 'package:apocalypsea2sv/config/ui_colors.dart';
 import 'package:apocalypsea2sv/diagnosis/components/instruction.dart';
 import 'package:apocalypsea2sv/diagnosis/components/uploadpicarea.dart';
 import 'package:flutter/material.dart';
-import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class TapTapHome extends StatefulWidget {
+  const TapTapHome({super.key});
+
   @override
   _TapTapHomeState createState() => _TapTapHomeState();
 }
@@ -14,15 +14,16 @@ class _TapTapHomeState extends State<TapTapHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView( // Add SingleChildScrollView here
+      body: SingleChildScrollView(
+        // Add SingleChildScrollView here
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 50),
-              Text(
+              const SizedBox(height: 50),
+              const Text(
                 'Diagnose Your Skin Condition',
                 style: TextStyle(
                   color: Colors.black,
@@ -32,8 +33,8 @@ class _TapTapHomeState extends State<TapTapHome> {
                   height: 1.2,
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Take or upload a photo of your skin to find out if it\'s healthy or if it requires medical attention.',
                 style: TextStyle(
                   color: Colors.black,
@@ -43,13 +44,13 @@ class _TapTapHomeState extends State<TapTapHome> {
                   height: 1.2,
                 ),
               ),
-              SizedBox(height: 20),
-              Center(child: Uploadpicarea()),
-              SizedBox(
+              const SizedBox(height: 20),
+              const Center(child: Uploadpicarea()),
+              const SizedBox(
                 height: 24,
               ),
               Container(
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

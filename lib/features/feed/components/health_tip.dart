@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class HealthTip extends StatelessWidget {
   final String dailyTip;
+  final Color color;
 
   const HealthTip({
     Key? key,
     required this.dailyTip,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -14,10 +16,10 @@ class HealthTip extends StatelessWidget {
     return Container(
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-          borderRadius:
-              BorderRadius.circular(15.0), // Set desired corner radius
-          color: AppColors.secondaryColor3 // Set background color,
-        ),
+            borderRadius:
+                BorderRadius.circular(15.0), // Set desired corner radius
+            color: color // Set background color,
+            ),
         child: Column(
           children: [
             Row(

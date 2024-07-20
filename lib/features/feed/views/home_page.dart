@@ -1,13 +1,12 @@
-// home_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:apocalypsea2sv/config/ui_colors.dart';
 import 'package:apocalypsea2sv/features/feed/components/explore_list.dart';
 import 'package:apocalypsea2sv/features/feed/components/health_tip.dart';
 import 'package:apocalypsea2sv/features/feed/components/more_features.dart';
-import 'package:apocalypsea2sv/features/feed/components/navbar.dart'; // Import your custom navbar
+import 'package:apocalypsea2sv/features/feed/components/navbar.dart';
 import 'package:apocalypsea2sv/features/feed/components/header.dart';
 import 'package:apocalypsea2sv/features/feed/components/profile.dart';
+import 'package:apocalypsea2sv/features/Diagnosis/views/daily_tips.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,14 +24,33 @@ class _HomePageState extends State<HomePage> {
     'Profile',
   ];
 
+  // List of pages to navigate
+  final List<Widget> _screens = [
+    HomeContentPage(),   // Page 0
+    // Page 1
+    DailyTipsPage(),     // Page 2
+    // Page 3
+  ];
+
   void _onNavBarItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-
-    // Add navigation logic here if necessary
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(_screenNames[_selectedIndex]),
+      ),
+      body: _screens[_selectedIndex], // Display the current page
+      bottomNavigationBar: BottomNavBar(),
+    );
+  }
+}
+
+class HomeContentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Replace these with actual asset paths in your project's assets folder
@@ -67,86 +85,76 @@ class _HomePageState extends State<HomePage> {
       },
     ];
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding:
-              const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 2.0), // Adjust padding
-          child: Column(
-            children: [
-              Header(headerText: "Welcome!"),
-              UserProfile(
-                userName: 'Mohcen Chouireb',
-                userEmail: 'raid.ouahioune@ensia.edu.dz',
-              ),
-              SizedBox(height: 12.0),
-              HealthTip(
-                dailyTip:
-                    "For strong bones: Include calcium-rich foods like dairy products, leafy greens, and tofu in your diet. Consider taking a vitamin D supplement if needed.",
-              ),
-              SizedBox(height: 12.0),
-              Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(5.0), // Adjust padding
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Explore",
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 2.0), // Adjust padding
+        child: Column(
+          children: [
+            Header(headerText: "Welcome!"),
+            UserProfile(
+              userName: 'Mohcen Chouireb',
+              userEmail: 'raid.ouahioune@ensia.edu.dz',
+            ),
+            SizedBox(height: 12.0),
+            HealthTip(
+              color: AppColors.secondaryColor3,
+              dailyTip:
+                  "For strong bones: Include calcium-rich foods like dairy products, leafy greens, and tofu in your diet. Consider taking a vitamin D supplement if needed.",
+            ),
+            SizedBox(height: 12.0),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(5.0), // Adjust padding
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Explore",
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  ExploreList(
-                    imageAssetPaths: imageAssetPaths,
-                    imageTitles: imageTitles,
-                  ),
-                ],
-              ),
-              SizedBox(height: 5.0),
-              Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(5.0), // Adjust padding
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "More Features",
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
+                ),
+                ExploreList(
+                  imageAssetPaths: imageAssetPaths,
+                  imageTitles: imageTitles,
+                ),
+              ],
+            ),
+            SizedBox(height: 5.0),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(5.0), // Adjust padding
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "More Features",
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Container(
-                    height: 100.0, // Adjust container height as needed
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: moreFeaturesData.length,
-                      itemBuilder: (context, index) {
-                        final itemData = moreFeaturesData[index];
-                        return MoreFeatures(
-                          svgAssetPath: itemData['svgPath'] as String?,
-                          title: itemData['title'] as String,
-                          backgroundColor: itemData['backgroundColor'] as Color,
-                          iconColor: itemData['iconColor'] as Color,
-                        );
-                      },
-                    ),
+                ),
+                Container(
+                  height: 100.0, // Adjust container height as needed
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: moreFeaturesData.length,
+                    itemBuilder: (context, index) {
+                      final itemData = moreFeaturesData[index];
+                      return MoreFeatures(
+                        svgAssetPath: itemData['svgPath'] as String?,
+                        title: itemData['title'] as String,
+                        backgroundColor: itemData['backgroundColor'] as Color,
+                        iconColor: itemData['iconColor'] as Color,
+                      );
+                    },
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
-      ),
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: _selectedIndex, // Pass the current index here
-        onItemTapped: _onNavBarItemTapped,
-        screenNames: _screenNames, // Pass the screen names list
       ),
     );
   }

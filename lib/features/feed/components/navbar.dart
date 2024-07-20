@@ -1,69 +1,96 @@
-// navbar.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:apocalypsea2sv/features/Diagnosis/views/daily_tips.dart';
+import 'package:apocalypsea2sv/features/Diagnosis/views/profile.dart';
+import 'package:apocalypsea2sv/features/feed/views/home_page.dart';
 
-class BottomNavBar extends StatelessWidget {
-  final int currentIndex;
-  final ValueChanged<int> onItemTapped;
-  final List<String> screenNames;
+class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({Key? key}) : super(key: key);
 
-  const BottomNavBar({
-    Key? key,
-    required this.currentIndex,
-    required this.onItemTapped,
-    required this.screenNames,
-  }) : super(key: key);
+  @override
+  _BottomNavBarState createState() => _BottomNavBarState();
+}
+
+class _BottomNavBarState extends State<BottomNavBar> {
+  int _selectedIndex = 0;
+
+  // List of screen names corresponding to each index
+  final List<String> _screenNames = [
+    'Home',
+    'Profile',
+    'Tips',
+    'Profile',
+  ];
+
+  // List of pages to navigate
+  final List<Widget> _screens = [
+    HomeContentPage(), // Page 0
+    DailyTipsPage(), // Page 1
+    DailyTipsPage(), // Page 2
+    ProfilePage(), // Page 3
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
-      color: Colors.white,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(4, (index) {
-          final bool isSelected = currentIndex == index;
+    return Scaffold(
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _screens,
+      ),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: List.generate(_screenNames.length, (index) {
+            final bool isSelected = _selectedIndex == index;
 
-          return GestureDetector(
-            onTap: () => onItemTapped(index),
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 00),
-              curve: Curves.easeInOut,
-              child: Row(
-                children: [
-                  AnimatedScale(
-                    scale: isSelected ? 1.2 : 1.0,
-                    duration: Duration(milliseconds: 200),
-                    curve: Curves.easeInOut,
-                    child: SvgPicture.asset(
-                      _getIconPath(index),
-                      color: isSelected ? Colors.teal : Colors.grey,
-                      height: 24.0,
-                      width: 24.0,
-                    ),
-                  ),
-                  if (isSelected)
-                    AnimatedSlide(
-                      offset: isSelected ? Offset(0, 0) : Offset(1, 0),
+            return GestureDetector(
+              onTap: () => _onItemTapped(index),
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                child: Row(
+                  children: [
+                    AnimatedScale(
+                      scale: isSelected ? 1.2 : 1.0,
                       duration: Duration(milliseconds: 200),
                       curve: Curves.easeInOut,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          screenNames[index],
-                          style: TextStyle(
-                            color: Colors.teal,
-                            fontWeight: FontWeight.bold,
+                      child: SvgPicture.asset(
+                        _getIconPath(index),
+                        color: isSelected ? Colors.teal : Colors.grey,
+                        height: 24.0,
+                        width: 24.0,
+                      ),
+                    ),
+                    if (isSelected)
+                      AnimatedSlide(
+                        offset: isSelected ? Offset(0, 0) : Offset(1, 0),
+                        duration: Duration(milliseconds: 200),
+                        curve: Curves.easeInOut,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            _screenNames[index],
+                            style: TextStyle(
+                              color: Colors.teal,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          );
-        }),
+            );
+          }),
+        ),
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:apocalypsea2sv/diagnosis/pages/page.dart';
 import 'package:apocalypsea2sv/features/feed/views/login_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/register_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/welcome_page.dart';
@@ -50,7 +49,7 @@ class AppWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
 
-    if (authProvider.user != null) {
+    if (authProvider.user == null) {
       return const HomePage();
     } else {
       return const WelcomePage();

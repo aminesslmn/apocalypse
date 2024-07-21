@@ -1,4 +1,4 @@
-import 'package:apocalypsea2sv/diagnosis/models/diagnosis_response_api.dart';
+import 'package:apocalypsea2sv/features/detection/models/diagnosis_response_api.dart';
 
 DiagnosisResponseAPI apiResponseExample = DiagnosisResponseAPI(
   accuracy_: 63.96,

@@ -1,16 +1,16 @@
 
-import 'package:apocalypsea2sv/features/profile/components/diagnosishistorybox.dart';
-import 'package:apocalypsea2sv/features/profile/components/profileshow.dart';
+import 'package:apocalypsea2sv/features/Profile/components/diagnosishistorybox.dart';
+import 'package:apocalypsea2sv/features/Profile/components/Profileshow.dart';
 import 'package:flutter/material.dart';
 
-class profile extends StatefulWidget {
-  const profile({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
 
   @override
-  State<profile> createState() => _profileState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _profileState extends State<profile> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

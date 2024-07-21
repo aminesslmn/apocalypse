@@ -2,6 +2,7 @@ import 'package:apocalypsea2sv/features/feed/views/login_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/register_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/welcome_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/register_details.dart';
+import 'package:apocalypsea2sv/features/profile/profile.dart';
 import 'package:apocalypsea2sv/firebase_options.dart';
 import 'package:apocalypsea2sv/providers/auth_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
             '/register-details': (context) => const RegisterDetailsScreen(),
             '/home': (context) => const HomePage(),
             '/login': (context) => const LoginScreen(),
+            '/profile': (context) => const ProfilePage(),
           },
         ));
   }

@@ -1,3 +1,8 @@
+import 'package:apocalypsea2sv/features/Diagnosis/views/archive_page.dart';
+import 'package:apocalypsea2sv/features/Diagnosis/views/more_tips.dart';
+import 'package:apocalypsea2sv/features/Diagnosis/views/profile.dart';
+import 'package:apocalypsea2sv/features/detection/pages/start_diagnosis.dart';
+import 'package:apocalypsea2sv/features/feed/components/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:apocalypsea2sv/config/ui_colors.dart';
 import 'package:apocalypsea2sv/features/feed/components/explore_list.dart';
@@ -5,7 +10,6 @@ import 'package:apocalypsea2sv/features/feed/components/health_tip.dart';
 import 'package:apocalypsea2sv/features/feed/components/more_features.dart';
 import 'package:apocalypsea2sv/features/feed/components/navbar.dart';
 import 'package:apocalypsea2sv/features/feed/components/header.dart';
-import 'package:apocalypsea2sv/features/feed/components/profile.dart';
 import 'package:apocalypsea2sv/features/Diagnosis/views/tips_pages_wrapper.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,9 +33,9 @@ class _HomePageState extends State<HomePage> {
   // List of pages to navigate
   final List<Widget> _screens = [
     const HomeContentPage(), // Page 0
-    // Page 1 (amine)
+    StartDiagnosisPage(), // Page 1
     const DailyTipsPage(), // Page 2
-    // Page 3 (not yet)
+    const ProfilePage(), // Page 3
   ];
 
   @override
@@ -68,18 +72,21 @@ class HomeContentPage extends StatelessWidget {
         'title': 'Check Skin Health',
         'backgroundColor': AppColors.secondaryColor1,
         'iconColor': AppColors.iconColor1,
+        'route': StartDiagnosisPage(), // Navigate to StartDiagnosisPage
       },
       {
         'svgPath': "assets/icons/archive.svg",
         'title': 'Diagnoses History',
         'backgroundColor': AppColors.secondaryColor2,
         'iconColor': AppColors.iconColor2,
+        'route': ArchivePage(), 
       },
       {
         'svgPath': "assets/icons/lamp-charge.svg",
         'title': 'More Health Tips',
         'backgroundColor': AppColors.secondaryColor3,
         'iconColor': AppColors.iconColor3,
+        'route': DailyTipsPage(),
       },
     ];
 
@@ -141,11 +148,23 @@ class HomeContentPage extends StatelessWidget {
                     itemCount: moreFeaturesData.length,
                     itemBuilder: (context, index) {
                       final itemData = moreFeaturesData[index];
-                      return MoreFeatures(
-                        svgAssetPath: itemData['svgPath'] as String?,
-                        title: itemData['title'] as String,
-                        backgroundColor: itemData['backgroundColor'] as Color,
-                        iconColor: itemData['iconColor'] as Color,
+                      return GestureDetector(
+                        onTap: () {
+                          if (itemData['route'] != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => itemData['route'],
+                              ),
+                            );
+                          }
+                        },
+                        child: MoreFeatures(
+                          svgAssetPath: itemData['svgPath'] as String?,
+                          title: itemData['title'] as String,
+                          backgroundColor: itemData['backgroundColor'] as Color,
+                          iconColor: itemData['iconColor'] as Color,
+                        ),
                       );
                     },
                   ),

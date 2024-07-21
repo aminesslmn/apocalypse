@@ -3,14 +3,14 @@ import 'package:apocalypsea2sv/features/detection/components/mainPage/instructio
 import 'package:apocalypsea2sv/features/detection/components/mainPage/uploadpicarea.dart';
 import 'package:flutter/material.dart';
 
-class TapTapHome extends StatefulWidget {
-  const TapTapHome({super.key});
+class StartDiagnosisPage extends StatefulWidget {
+  const StartDiagnosisPage({super.key});
 
   @override
-  _TapTapHomeState createState() => _TapTapHomeState();
+  _StartDiagnosisPageState createState() => _StartDiagnosisPageState();
 }
 
-class _TapTapHomeState extends State<TapTapHome> {
+class _StartDiagnosisPageState extends State<StartDiagnosisPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -18,7 +18,7 @@ class _TapTapHomeState extends State<TapTapHome> {
         child: SingleChildScrollView(
           // Add SingleChildScrollView here
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 40.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,

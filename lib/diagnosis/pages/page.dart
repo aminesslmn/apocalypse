@@ -4,6 +4,8 @@ import 'package:apocalypsea2sv/diagnosis/components/mainPage/uploadpicarea.dart'
 import 'package:flutter/material.dart';
 
 class TapTapHome extends StatefulWidget {
+  const TapTapHome({super.key});
+
   @override
   _TapTapHomeState createState() => _TapTapHomeState();
 }

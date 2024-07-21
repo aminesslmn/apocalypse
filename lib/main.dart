@@ -1,3 +1,4 @@
+import 'package:apocalypsea2sv/diagnosis/pages/page.dart';
 import 'package:apocalypsea2sv/features/feed/views/login_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/register_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/welcome_page.dart';

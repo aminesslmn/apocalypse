@@ -1,6 +1,6 @@
 import 'package:apocalypsea2sv/config/ui_colors.dart';
-import 'package:apocalypsea2sv/diagnosis/components/instruction.dart';
-import 'package:apocalypsea2sv/diagnosis/components/uploadpicarea.dart';
+import 'package:apocalypsea2sv/diagnosis/components/mainPage/instruction.dart';
+import 'package:apocalypsea2sv/diagnosis/components/mainPage/uploadpicarea.dart';
 import 'package:flutter/material.dart';
 
 class TapTapHome extends StatefulWidget {
@@ -13,44 +13,43 @@ class TapTapHome extends StatefulWidget {
 class _TapTapHomeState extends State<TapTapHome> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        // Add SingleChildScrollView here
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 50),
-              const Text(
-                'Diagnose Your Skin Condition',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 34,
-                  fontFamily: 'Lato',
-                  fontWeight: FontWeight.w700,
-                  height: 1.2,
+    return const Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          // Add SingleChildScrollView here
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Diagnose Your Skin Condition',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 34,
+                    fontFamily: 'Lato',
+                    fontWeight: FontWeight.w700,
+                    height: 1.2,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Take or upload a photo of your skin to find out if it\'s healthy or if it requires medical attention.',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 17,
-                  fontFamily: 'Lato',
-                  fontWeight: FontWeight.w400,
-                  height: 1.2,
+                SizedBox(height: 20),
+                Text(
+                  'Take or upload a photo of your skin to find out if it\'s healthy or if it requires medical attention.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 17,
+                    fontFamily: 'Lato',
+                    fontWeight: FontWeight.w400,
+                    height: 1.2,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              const Center(child: Uploadpicarea()),
-              const SizedBox(
-                height: 24,
-              ),
-              Container(
-                child: const Column(
+                SizedBox(height: 20),
+                Center(child: Uploadpicarea()),
+                SizedBox(
+                  height: 24,
+                ),
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -87,9 +86,9 @@ class _TapTapHomeState extends State<TapTapHome> {
                           'Fill most of the frame with the affected area.',
                     ),
                   ],
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

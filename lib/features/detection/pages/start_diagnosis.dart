@@ -18,7 +18,7 @@ class _StartDiagnosisPageState extends State<StartDiagnosisPage> {
         child: SingleChildScrollView(
           // Add SingleChildScrollView here
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 40.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,

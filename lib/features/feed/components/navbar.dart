@@ -1,3 +1,4 @@
+import 'package:apocalypsea2sv/features/detection/pages/start_diagnosis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:apocalypsea2sv/features/Diagnosis/views/tips_pages_wrapper.dart';
@@ -17,15 +18,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
   // List of screen names corresponding to each index
   final List<String> _screenNames = [
     'Home',
-    'Profile',
+    'Diagnosis',
     'Tips',
     'Profile',
   ];
 
   // List of pages to navigate
   final List<Widget> _screens = [
-    HomeContentPage(), // Page 0
-    DailyTipsPage(), // Page 1
+    HomePage(), // Page 0
+    StartDiagnosisPage(), // Page 1
     DailyTipsPage(), // Page 2
     ProfilePage(), // Page 3
   ];

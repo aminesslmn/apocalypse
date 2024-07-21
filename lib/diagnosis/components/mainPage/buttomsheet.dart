@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class BottomSheetWidget extends StatelessWidget {
-  const BottomSheetWidget({super.key});
+  final Function()? takePicture;
+  final Function()? uploadPicture;
+
+  const BottomSheetWidget({
+    super.key,
+    required this.takePicture,
+    required this.uploadPicture,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +66,7 @@ class BottomSheetWidget extends StatelessWidget {
               foregroundColor: const Color(0xFFFF8156),
               side: const BorderSide(color: Color(0xFFFFA487)),
               minimumSize: const Size(double.infinity, 40),
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero, // Set border radius to zero
               ),
             ),
@@ -73,7 +80,7 @@ class BottomSheetWidget extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              // Handle upload picture action
+              uploadPicture!();
             },
           ),
           const SizedBox(height: 10),
@@ -81,7 +88,7 @@ class BottomSheetWidget extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFFFFA487),
               minimumSize: const Size(double.infinity, 40),
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero, // Set border radius to zero
               ),
             ),
@@ -96,7 +103,7 @@ class BottomSheetWidget extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              // Handle take picture action
+              takePicture!();
             },
           ),
         ],

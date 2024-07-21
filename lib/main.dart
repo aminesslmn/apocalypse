@@ -1,3 +1,4 @@
+import 'package:apocalypsea2sv/diagnosis/pages/page.dart';
 import 'package:apocalypsea2sv/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       // Set the home property to HomePage
-      home: HomePage(),
+      home: TapTapHome(),
     );
   }
 }

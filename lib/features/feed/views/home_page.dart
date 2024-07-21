@@ -6,7 +6,7 @@ import 'package:apocalypsea2sv/features/feed/components/more_features.dart';
 import 'package:apocalypsea2sv/features/feed/components/navbar.dart';
 import 'package:apocalypsea2sv/features/feed/components/header.dart';
 import 'package:apocalypsea2sv/features/feed/components/profile.dart';
-import 'package:apocalypsea2sv/features/Diagnosis/views/daily_tips.dart';
+import 'package:apocalypsea2sv/features/Diagnosis/views/tips_pages_wrapper.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

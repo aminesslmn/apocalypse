@@ -1,13 +1,9 @@
-import 'package:apocalypsea2sv/diagnosis/components/mainPage/buttomsheet.dart';
+import 'package:apocalypsea2sv/features/detection/components/mainPage/buttomsheet.dart';
+import 'package:apocalypsea2sv/services/detect.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:apocalypsea2sv/diagnosis/pages/diagnosis_done.dart';
-import 'package:dio/dio.dart';
-
 import 'dart:io';
-
-import 'package:image_picker/image_picker.dart';
 
 class Uploadpicarea extends StatefulWidget {
   const Uploadpicarea({super.key});
@@ -18,85 +14,32 @@ class Uploadpicarea extends StatefulWidget {
 
 class _UploadpicareaState extends State<Uploadpicarea> {
   File? _image;
-  final ImagePicker _picker = ImagePicker();
   bool _loading = false;
 
   Future<void> _takePicture() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    _image = await DetectService().takePicture();
 
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
+    if (_image == null) {
+      print('No image selected.');
+    }
+
+    setState(() {});
   }
 
   Future<void> _uploadPicture() async {
     if (_image == null) {
-      print("IMAGE is null");
-      return;
+      print('No image selected.');
     }
 
     setState(() {
       _loading = true;
     });
 
-    Dio dio = Dio();
+    bool status = await DetectService().uploadPicture(context, _image!);
 
-    try {
-      FormData formData = FormData.fromMap({
-        "file":
-            await MultipartFile.fromFile(_image!.path, filename: "photo.jpg"),
-      });
-
-      Response response =
-          await dio.post("http://192.168.1.2:3000/detect", data: formData);
-
-      if (response.statusCode == 200) {
-        Map<String, dynamic> data = response.data as Map<String, dynamic>;
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DiagnosisDone(
-              diagnosis_: data["data"],
-              imageURL_: _image!.path,
-            ),
-          ),
-        );
-      } else {
-        _showError('Failed to upload image');
-      }
-    } catch (e) {
-      print("ERROR: ${e.toString()}");
-      _showError(e.toString());
-    } finally {
-      setState(() {
-        _loading = false;
-      });
-    }
-  }
-
-  void _showError(String message) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Error'),
-          content: Text(message),
-          actions: <Widget>[
-            TextButton(
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+    setState(() {
+      _loading = false;
+    });
   }
 
   @override
@@ -163,8 +106,12 @@ class _UploadpicareaState extends State<Uploadpicarea> {
                     ),
                   )
                 : ClipRRect(
-                    child: Image.file(_image!, width: 400, height: 350),
                     borderRadius: BorderRadius.circular(20),
+                    child: Image.file(
+                      _image!,
+                      width: 400,
+                      height: 350,
+                    ),
                   ),
       ),
     );

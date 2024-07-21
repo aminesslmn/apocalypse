@@ -1,8 +1,8 @@
 import 'package:apocalypsea2sv/config/ui_colors.dart';
-import 'package:apocalypsea2sv/diagnosis/components/diagnosis_done/diagnosis_report_row.dart';
-import 'package:apocalypsea2sv/diagnosis/components/diagnosis_done/image_area.dart';
-import 'package:apocalypsea2sv/diagnosis/models/diagnosis_response_api.dart';
-import 'package:apocalypsea2sv/diagnosis/pages/ai_diagnosis_report.dart';
+import 'package:apocalypsea2sv/features/detection/components/diagnosis_done/diagnosis_report_row.dart';
+import 'package:apocalypsea2sv/features/detection/components/diagnosis_done/image_area.dart';
+import 'package:apocalypsea2sv/features/detection/models/diagnosis_response_api.dart';
+import 'package:apocalypsea2sv/features/detection/pages/ai_diagnosis_report.dart';
 import 'package:flutter/material.dart';
 
 class DiagnosisDone extends StatelessWidget {
@@ -10,7 +10,6 @@ class DiagnosisDone extends StatelessWidget {
   String imageURL = "";
 
   DiagnosisDone({super.key, Map<String, dynamic>? diagnosis_, imageURL_}) {
-    print(diagnosis);
     diagnosis = DiagnosisResponseAPI(
       disease_: diagnosis_?["disease"],
       accuracy_: diagnosis_?["accuracy"],

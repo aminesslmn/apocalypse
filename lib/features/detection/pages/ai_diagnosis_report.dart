@@ -1,6 +1,6 @@
-import 'package:apocalypsea2sv/diagnosis/components/aiReport/ai_diagnosis_report.dart';
-import 'package:apocalypsea2sv/diagnosis/components/aiReport/description_section.dart';
-import 'package:apocalypsea2sv/diagnosis/models/diagnosis_response_api.dart';
+import 'package:apocalypsea2sv/features/detection/components/aiReport/ai_diagnosis_report.dart';
+import 'package:apocalypsea2sv/features/detection/components/aiReport/description_section.dart';
+import 'package:apocalypsea2sv/features/detection/models/diagnosis_response_api.dart';
 import 'package:flutter/material.dart';
 
 class AiDiagnosisReport extends StatelessWidget {

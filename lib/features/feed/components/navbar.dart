@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:apocalypsea2sv/features/Diagnosis/views/daily_tips.dart';
+import 'package:apocalypsea2sv/features/Diagnosis/views/tips_pages_wrapper.dart';
 import 'package:apocalypsea2sv/features/Diagnosis/views/profile.dart';
 import 'package:apocalypsea2sv/features/feed/views/home_page.dart';
 

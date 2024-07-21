@@ -1,6 +1,6 @@
 import 'package:apocalypsea2sv/config/ui_colors.dart';
-import 'package:apocalypsea2sv/diagnosis/components/mainPage/instruction.dart';
-import 'package:apocalypsea2sv/diagnosis/components/mainPage/uploadpicarea.dart';
+import 'package:apocalypsea2sv/features/detection/components/mainPage/instruction.dart';
+import 'package:apocalypsea2sv/features/detection/components/mainPage/uploadpicarea.dart';
 import 'package:flutter/material.dart';
 
 class TapTapHome extends StatefulWidget {

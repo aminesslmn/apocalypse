@@ -1,12 +1,15 @@
-
 import 'package:apocalypsea2sv/features/profile/profilesettings.dart';
+import 'package:apocalypsea2sv/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Profileshow extends StatelessWidget {
   const Profileshow({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -37,26 +40,26 @@ class Profileshow extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'John Doe',
-                      style: TextStyle(
+                      authProvider.user?.displayName ?? "Mohcen Chouireb",
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'john.doe@example.com',
-                      style: TextStyle(
+                      authProvider.user?.email ?? "raid.ouahioune@ensia.edu.dz",
+                      style: const TextStyle(
                         fontSize: 14,
                         color: Colors.white,
                       ),
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 // Settings icon
                 IconButton(
-                  icon: Icon(Icons.settings),
+                  icon: const Icon(Icons.settings),
                   color: Colors.white,
                   onPressed: () {
                     Navigator.push(
@@ -68,10 +71,10 @@ class Profileshow extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // Calendar icon

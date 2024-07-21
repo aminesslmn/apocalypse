@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           )
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           home: const AppWrapper(),
           routes: {
             '/welcome': (context) => const WelcomePage(),
@@ -52,7 +53,7 @@ class AppWrapper extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context);
 
     if (authProvider.user == null) {
-      return const HomePage();
+      return HomePage();
     } else {
       return const WelcomePage();
     }

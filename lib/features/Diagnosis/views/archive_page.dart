@@ -41,22 +41,22 @@ class _ArchivePageState extends State<ArchivePage> {
                 title: "20 jul 2024",
                 titleColor: AppColors.main,
                 content:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard "),
+                    "Stay Hydrated: Drink plenty of water throughout the day to keep your skin hydrated and help flush out toxins."),
             const CustomContainer(
                 title: "20 jul 2024",
                 titleColor: AppColors.main,
                 content:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard "),
+                    "Use Sunscreen Daily: Protect your skin from harmful UV rays by applying sunscreen with at least SPF 30, even on cloudy days."),
             const CustomContainer(
                 title: "20 jul 2024",
                 titleColor: AppColors.main,
                 content:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard "),
+                    "Moisturize Regularly: Choose a moisturizer suitable for your skin type and apply it daily to maintain skin elasticity and prevent dryness."),
             const CustomContainer(
                 title: "20 jul 2024",
                 titleColor: AppColors.main,
                 content:
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard ")
+                    "at a Balanced Diet: Include plenty of fruits, vegetables, lean proteins, and healthy fats in your diet to provide essential nutrients for skin health.")
           ],
         ),
       ),

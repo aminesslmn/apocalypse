@@ -17,7 +17,7 @@ class _MoreTipsPageState extends State<MoreTipsPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomContainer(title: "More Tips for your Health", content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          CustomContainer(title: "More Tips for your Health", content: "Stay Hydrated: Drink plenty of water throughout the day to keep your skin hydrated and help flush out toxins. Use Sunscreen Daily: Protect your skin from harmful UV rays by applying sunscreen with at least SPF 30, even on cloudy days. Moisturize Regularly: Choose a moisturizer suitable for your skin type and apply it daily to maintain skin elasticity and prevent dryness. Eat a Balanced Diet: Include plenty of fruits, vegetables, lean proteins, and healthy fats in your diet to provide essential nutrients for skin health.",
           backgroundColor: AppColors.white, showIcon: true, iconPath: "assets/icons/ai.svg", iconColor: AppColors.main,),
         ],
       ),

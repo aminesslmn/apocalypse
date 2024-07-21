@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 import 'package:apocalypsea2sv/diagnosis/pages/page.dart';
-=======
 import 'package:apocalypsea2sv/features/feed/views/login_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/register_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/welcome_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/register_details.dart';
->>>>>>> main
 import 'package:apocalypsea2sv/firebase_options.dart';
 import 'package:apocalypsea2sv/providers/auth_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -51,13 +48,6 @@ class AppWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return MaterialApp(
-      title: 'Flutter Demo',
-      // Set the home property to HomePage
-      home: TapTapHome(),
-    );
-=======
     final authProvider = Provider.of<AuthProvider>(context);
 
     if (authProvider.user != null) {
@@ -65,6 +55,5 @@ class AppWrapper extends StatelessWidget {
     } else {
       return const WelcomePage();
     }
->>>>>>> main
   }
 }

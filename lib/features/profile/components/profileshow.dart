@@ -8,6 +8,7 @@ class Profileshow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Color(0xFF00ABB6),
@@ -97,7 +98,7 @@ class Profileshow extends StatelessWidget {
                 SizedBox(width: 8),
                 // Received diagnoses text
                 Text(
-                  'Received 30 diagnoses',
+                  'Received 30..',
                   style: TextStyle(fontSize: 12, color: Colors.white),
                 ),
               ],

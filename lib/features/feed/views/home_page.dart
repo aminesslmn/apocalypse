@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final int _selectedIndex = 0;
+  int _selectedIndex = 0;
 
   // List of screen names corresponding to each index
   final List<String> _screenNames = [
@@ -38,6 +38,12 @@ class _HomePageState extends State<HomePage> {
     const ProfilePage(), // Page 3
   ];
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +51,10 @@ class _HomePageState extends State<HomePage> {
         title: Text(_screenNames[_selectedIndex]),
       ),
       body: _screens[_selectedIndex], // Display the current page
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        screens: _screens,
+        initialIndex: _selectedIndex,
+      ),
     );
   }
 }

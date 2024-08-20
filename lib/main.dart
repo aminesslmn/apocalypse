@@ -1,3 +1,9 @@
+import 'package:apocalypsea2sv/features/detection/pages/diagnosis_done.dart';
+import 'package:apocalypsea2sv/features/doctor/views/account_not_accepted.dart';
+import 'package:apocalypsea2sv/features/doctor/views/account_pending.dart';
+import 'package:apocalypsea2sv/features/doctor/views/home_verified.dart';
+import 'package:apocalypsea2sv/features/doctor/views/verification_details.dart';
+import 'package:apocalypsea2sv/features/doctor/views/verification_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/login_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/register_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/welcome_page.dart';
@@ -8,8 +14,7 @@ import 'package:apocalypsea2sv/providers/auth_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'features/feed/views/home_page.dart'; // Assuming your HomePage view is located here
-// Assuming your UI colors are defined here
+import 'features/feed/views/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,7 +59,7 @@ class AppWrapper extends StatelessWidget {
     if (authProvider.user == null) {
       return const WelcomePage();
     } else {
-      return const HomePage();
+      return const HomeVerified();
     }
   }
 }

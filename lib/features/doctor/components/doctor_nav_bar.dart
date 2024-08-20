@@ -1,28 +1,21 @@
-import 'package:apocalypsea2sv/features/detection/pages/start_diagnosis.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:apocalypsea2sv/features/Diagnosis/views/tips_pages_wrapper.dart';
-import 'package:apocalypsea2sv/features/feed/views/home_page.dart';
-import 'package:apocalypsea2sv/features/profile/profile.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class BottomNavBar extends StatefulWidget {
+class DoctorNavBar extends StatefulWidget {
   final List<Widget> screens;
   final int initialIndex;
 
-  const BottomNavBar({
+  const DoctorNavBar({
     Key? key,
     required this.screens,
     this.initialIndex = 0,
   }) : super(key: key);
 
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
+  State<DoctorNavBar> createState() => _DoctorNavBarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class _DoctorNavBarState extends State<DoctorNavBar> {
   late int _selectedIndex;
 
   @override
@@ -128,4 +121,3 @@ class _BottomNavBarState extends State<BottomNavBar> {
     }
   }
 }
-

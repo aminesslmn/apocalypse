@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
           )
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           home: const AppWrapper(),
           routes: {
             '/welcome': (context) => const WelcomePage(),
@@ -56,10 +57,10 @@ class AppWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
 
-    if (authProvider.user == null) {
-      return const WelcomePage();
+    if (authProvider.user != null) {
+      return const HomePage();
     } else {
-      return const HomeVerified();
+      return const WelcomePage();
     }
   }
 }

@@ -3,6 +3,7 @@ import 'package:apocalypsea2sv/features/Diagnosis/views/more_tips.dart';
 import 'package:apocalypsea2sv/features/Diagnosis/views/profile.dart';
 import 'package:apocalypsea2sv/features/detection/pages/start_diagnosis.dart';
 import 'package:apocalypsea2sv/features/feed/components/user_profile.dart';
+import 'package:apocalypsea2sv/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:apocalypsea2sv/config/ui_colors.dart';
 import 'package:apocalypsea2sv/features/feed/components/explore_list.dart';
@@ -11,6 +12,7 @@ import 'package:apocalypsea2sv/features/feed/components/more_features.dart';
 import 'package:apocalypsea2sv/features/feed/components/navbar.dart';
 import 'package:apocalypsea2sv/features/feed/components/header.dart';
 import 'package:apocalypsea2sv/features/Diagnosis/views/tips_pages_wrapper.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,7 +34,7 @@ class _HomePageState extends State<HomePage> {
 
   // List of pages to navigate
   final List<Widget> _screens = [
-    const HomeContentPage(), // Page 0
+    HomeContentPage(), // Page 0
     StartDiagnosisPage(), // Page 1
     const DailyTipsPage(), // Page 2
     const ProfilePage(), // Page 3
@@ -60,10 +62,12 @@ class _HomePageState extends State<HomePage> {
 }
 
 class HomeContentPage extends StatelessWidget {
-  const HomeContentPage({super.key});
+  HomeContentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
     // Replace these with actual asset paths in your project's assets folder
     final List<String> imageAssetPaths = [
       'assets/image1.png',
@@ -88,7 +92,7 @@ class HomeContentPage extends StatelessWidget {
         'title': 'Diagnoses History',
         'backgroundColor': AppColors.secondaryColor2,
         'iconColor': AppColors.iconColor2,
-        'route': ArchivePage(), 
+        'route': ArchivePage(),
       },
       {
         'svgPath': "assets/icons/lamp-charge.svg",
@@ -106,9 +110,10 @@ class HomeContentPage extends StatelessWidget {
         child: Column(
           children: [
             const Header(headerText: "Welcome!"),
-            const UserProfile(
-              userName: 'Mohcen Chouireb',
-              userEmail: 'raid.ouahioune@ensia.edu.dz',
+            UserProfile(
+              userName: authProvider.user?.displayName ?? "Mohcen Chouireb",
+              userEmail:
+                  authProvider.user?.email ?? "raid.ouahioune@ensia.edu.dz",
             ),
             const SizedBox(height: 12.0),
             const HealthTip(

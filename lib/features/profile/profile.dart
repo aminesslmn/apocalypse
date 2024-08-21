@@ -1,4 +1,3 @@
-
 import 'package:apocalypsea2sv/features/Profile/components/diagnosishistorybox.dart';
 import 'package:apocalypsea2sv/features/Profile/components/Profileshow.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
@@ -28,7 +27,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(fontSize: 17),
               ),
               SizedBox(height: 20),
-              // Ensure the diagnosis history section is scrollable
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(

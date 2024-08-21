@@ -46,6 +46,15 @@ class AiDiagnosisReport extends StatelessWidget {
                       title: 'Treatement',
                       content: diagnosis?.llmResponse?.treatement ?? "",
                     ),
+                    const Text(
+                      "Note: AI diagnoses may make mistakes. Consult a doctor for proper medical advice.",
+                      style: TextStyle(
+                          fontSize: 11,
+                          fontFamily: 'Lato',
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black),
+                      textAlign: TextAlign.center,
+                    )
                   ],
                 ),
               ),

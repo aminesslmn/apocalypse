@@ -1,30 +1,60 @@
 import 'package:apocalypsea2sv/config/ui_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:apocalypsea2sv/providers/auth_provider.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController _fullNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  bool isPatient = true;
+  int currentStep = 0;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  // Controllers for patient registration
+  final TextEditingController _patientFullNameController =
+      TextEditingController();
+  final TextEditingController _patientEmailController = TextEditingController();
+  final TextEditingController _patientPasswordController =
+      TextEditingController();
+  final TextEditingController _patientConfirmPasswordController =
+      TextEditingController();
+  final TextEditingController _patientAgeController = TextEditingController();
+  final TextEditingController _patientCountryController =
+      TextEditingController();
+  final TextEditingController _patientGenderController =
+      TextEditingController();
+  final TextEditingController _patientHealthConditionsController =
+      TextEditingController();
+  final TextEditingController _patientAllergiesController =
+      TextEditingController();
+  final TextEditingController _patientConfirmationCodeController =
+      TextEditingController();
+
+  // Controllers for doctor registration
+  final TextEditingController _doctorNameController = TextEditingController();
+  final TextEditingController _doctorEmailController = TextEditingController();
+  final TextEditingController _doctorCountryController =
+      TextEditingController();
+  final TextEditingController _doctorSpecialityController =
+      TextEditingController();
+  final TextEditingController _doctorYearsOfExpController =
+      TextEditingController();
+  final TextEditingController _doctorConfirmationCodeController =
+      TextEditingController();
+  final TextEditingController _doctorPasswordController =
+      TextEditingController();
+  final TextEditingController _doctorConfirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final authProvider = Provider.of<AuthProvider>(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -56,9 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   // Add some space at the top
                   Column(
                     children: [
-                      const SizedBox(
-                        height: 40,
-                      ),
+                      const SizedBox(height: 40),
                       Image.asset(
                         'assets/logo.png',
                         fit: BoxFit.fill,
@@ -68,190 +96,107 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ],
                   ),
                   // Registration form
-                  const SizedBox(
-                    height: 150,
-                  ),
+                  const SizedBox(height: 50),
                   Container(
                     width: screenWidth * 0.85,
                     padding: const EdgeInsets.all(20.0),
                     decoration: BoxDecoration(
+                      color: Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.01),
-                          blurRadius: 10,
-                          offset: const Offset(0, 5),
-                        ),
-                      ],
                     ),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          const Text(
-                            "Register",
-                            style: TextStyle(
-                              color: AppColors.main,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Register",
+                          style: TextStyle(
+                            color: AppColors.main,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(height: 20),
-                          TextFormField(
-                            controller: _fullNameController,
-                            decoration: const InputDecoration(
-                              labelText: 'Full Name',
-                              labelStyle: TextStyle(color: AppColors.main),
-                              prefixIcon:
-                                  Icon(Icons.person, color: AppColors.main),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.main),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(246, 0, 170, 182)),
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your full name';
-                              }
-                              return null;
-                            },
+                        ),
+                        const SizedBox(height: 20),
+                        // Toggle buttons
+                        ToggleButtons(
+                          constraints: BoxConstraints.expand(
+                            width: (MediaQuery.of(context).size.width * 0.85 -
+                                    45) /
+                                2,
+                            height: 40,
                           ),
-                          const SizedBox(height: 20),
-                          TextFormField(
-                            controller: _emailController,
-                            decoration: const InputDecoration(
-                              labelText: 'Email',
-                              labelStyle: TextStyle(color: AppColors.main),
-                              prefixIcon:
-                                  Icon(Icons.email, color: AppColors.main),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.main),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.main),
-                              ),
-                            ),
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your email';
-                              }
-                              final emailRegex = RegExp(
-                                  r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-                              if (!emailRegex.hasMatch(value)) {
-                                return 'Please enter a valid email';
-                              }
-                              return null;
-                            },
-                          ),
-                          const SizedBox(height: 20),
-                          TextFormField(
-                            controller: _passwordController,
-                            obscureText: true,
-                            decoration: const InputDecoration(
-                              labelText: 'Password',
-                              labelStyle: TextStyle(color: AppColors.main),
-                              prefixIcon:
-                                  Icon(Icons.lock, color: AppColors.main),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.main),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.main),
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your password';
-                              }
-                              return null;
-                            },
-                          ),
-                          const SizedBox(height: 20),
-                          TextFormField(
-                            controller: _confirmPasswordController,
-                            obscureText: true,
-                            decoration: const InputDecoration(
-                              labelText: 'Confirm Password',
-                              labelStyle: TextStyle(color: AppColors.main),
-                              prefixIcon:
-                                  Icon(Icons.lock, color: AppColors.main),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.main),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.main),
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please confirm your password';
-                              }
-                              if (value != _passwordController.text) {
-                                return 'Passwords do not match';
-                              }
-                              return null;
-                            },
-                          ),
-                          const SizedBox(height: 20),
-                          ElevatedButton(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                final email = _emailController.text.trim();
-                                final password =
-                                    _passwordController.text.trim();
-                                final fullName =
-                                    _fullNameController.text.trim();
-
-                                authProvider.setUser(email, fullName, password);
-                                Navigator.pushNamed(
-                                    context, '/register-details');
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 30),
-                              backgroundColor: AppColors.main,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            child: authProvider.isLoading
-                                ? const CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.white),
-                                  )
-                                : const Text(
-                                    'Next',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
+                          isSelected: [isPatient, !isPatient],
+                          onPressed: (index) {
+                            setState(() {
+                              isPatient = index == 0;
+                              currentStep = 0;
+                            });
+                          },
+                          color: AppColors.main,
+                          selectedColor: Colors.white,
+                          fillColor: AppColors.main,
+                          borderColor: AppColors.main,
+                          selectedBorderColor: AppColors.main,
+                          borderWidth: 1,
+                          borderRadius: BorderRadius.circular(0),
+                          children: const [
+                            Text('Patient'),
+                            Text('Doctor'),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        // Multi-step form
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              if (isPatient)
+                                _buildPatientForm()
+                              else
+                                _buildDoctorForm(),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: (MediaQuery.of(context).size.width *
+                                            0.85 -
+                                        42),
+                                    height: 50,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          if (currentStep < 2) {
+                                            setState(() {
+                                              currentStep++;
+                                            });
+                                          } else {
+                                            // Handle form submission
+                                            print('Form submitted');
+                                          }
+                                        }
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius
+                                              .zero, // Remove border radius
+                                        ),
+                                        backgroundColor: AppColors.main,
+                                      ),
+                                      child: Text(
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                        currentStep == 2 ? 'Sign Up' : 'Next',
+                                      ),
                                     ),
                                   ),
-                          ),
-                          if (authProvider.error != null)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Text(
-                                authProvider.error!,
-                                style: const TextStyle(color: Colors.red),
+                                ],
                               ),
-                            ),
-                          const SizedBox(height: 20),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/login');
-                            },
-                            child: const Text(
-                              'Already have an account? Log in',
-                              style: TextStyle(color: AppColors.main),
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 50),
@@ -260,6 +205,279 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildPatientForm() {
+    switch (currentStep) {
+      case 0:
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Please enter your information",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 6,
+            ),
+            TextFormField(
+              controller: _patientFullNameController,
+              decoration: _inputDecoration('Full Name').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true, // Enable the fill color
+                prefixIcon: const Icon(Icons.person),
+                prefixIconColor: Colors.grey,
+              ),
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter your full name' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _patientEmailController,
+              decoration: _inputDecoration('Email').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+                prefixIconColor: Colors.grey,
+                prefixIcon: const Icon(Icons.email), // Email icon on the left
+              ),
+              keyboardType: TextInputType.emailAddress,
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter your email' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _patientPasswordController,
+              decoration: _inputDecoration('Password').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+                prefixIconColor: Colors.grey,
+                prefixIcon: const Icon(
+                    Icons.remove_red_eye), // Password lock icon on the left
+              ),
+              obscureText: true,
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter a password' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _patientConfirmPasswordController,
+              decoration: _inputDecoration('Confirm Password').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+                prefixIconColor: Colors.grey,
+                prefixIcon: const Icon(
+                    Icons.remove_red_eye), // Password lock icon on the left
+              ),
+              obscureText: true,
+              validator: (value) {
+                if (value != _patientPasswordController.text) {
+                  return 'Passwords do not match';
+                }
+                return null;
+              },
+            ),
+          ],
+        );
+      case 1:
+        return Column(
+          children: [
+            TextFormField(
+              controller: _patientAgeController,
+              decoration: _inputDecoration('Age').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              keyboardType: TextInputType.number,
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter your age' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _patientCountryController,
+              decoration: _inputDecoration('Country').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter your country' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _patientGenderController,
+              decoration: _inputDecoration('Gender').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter your gender' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _patientHealthConditionsController,
+              decoration:
+                  _inputDecoration('Existing Health Conditions').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              maxLines: 3,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _patientAllergiesController,
+              decoration: _inputDecoration('Allergies').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              maxLines: 3,
+            ),
+          ],
+        );
+      case 2:
+        return Column(
+          children: [
+            TextFormField(
+              controller: _patientConfirmationCodeController,
+              decoration: _inputDecoration('Confirmation Code').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter the confirmation code' : null,
+            ),
+          ],
+        );
+      default:
+        return Container();
+    }
+  }
+
+  Widget _buildDoctorForm() {
+    switch (currentStep) {
+      case 0:
+        return Column(
+          children: [
+            TextFormField(
+              controller: _doctorNameController,
+              decoration: _inputDecoration('Full Name').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter your full name' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _doctorEmailController,
+              decoration: _inputDecoration('Email').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              keyboardType: TextInputType.emailAddress,
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter your email' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _doctorCountryController,
+              decoration: _inputDecoration('Country').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter your country' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _doctorSpecialityController,
+              decoration: _inputDecoration('Speciality').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter your speciality' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _doctorYearsOfExpController,
+              decoration: _inputDecoration('Years of Experience').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              keyboardType: TextInputType.number,
+              validator: (value) => value!.isEmpty
+                  ? 'Please enter your years of experience'
+                  : null,
+            ),
+          ],
+        );
+      case 1:
+        return Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                // Handle file upload for verification
+              },
+              child: const Text('Upload Verification Documents'),
+            ),
+          ],
+        );
+      case 2:
+        return Column(
+          children: [
+            TextFormField(
+              controller: _doctorConfirmationCodeController,
+              decoration: _inputDecoration('Confirmation Code').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter the confirmation code' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _doctorPasswordController,
+              decoration: _inputDecoration('Password').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              obscureText: true,
+              validator: (value) =>
+                  value!.isEmpty ? 'Please enter a password' : null,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _doctorConfirmPasswordController,
+              decoration: _inputDecoration('Confirm Password').copyWith(
+                fillColor: Colors.white, // Set the background color to white
+                filled: true,
+              ),
+              obscureText: true,
+              validator: (value) {
+                if (value != _doctorPasswordController.text) {
+                  return 'Passwords do not match';
+                }
+                return null;
+              },
+            ),
+          ],
+        );
+      default:
+        return Container();
+    }
+  }
+
+  InputDecoration _inputDecoration(String label) {
+    return InputDecoration(
+      fillColor: AppColors.white,
+      labelText: label,
+      labelStyle: const TextStyle(color: Color.fromARGB(255, 146, 147, 147)),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.main),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.main),
       ),
     );
   }

@@ -58,7 +58,7 @@ class AppWrapper extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context);
 
     if (authProvider.user != null) {
-      return const HomePage();
+      return const HomeVerified();
     } else {
       return const WelcomePage();
     }

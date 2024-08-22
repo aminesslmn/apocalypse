@@ -62,6 +62,7 @@ class DetectService {
           'userId': user.uid,
           'imageUrl': downloadURL,
           'disease': data["data"]["disease"],
+          'accuracy': data["data"]["accuracy"],
           'timestamp': FieldValue.serverTimestamp(),
         });
 

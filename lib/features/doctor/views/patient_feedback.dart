@@ -29,8 +29,7 @@ class PatientFeedbackPage extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 30.0,
-                        backgroundImage: AssetImage(
-                            'assets/image1.png'), 
+                        backgroundImage: AssetImage('assets/image1.png'),
                       ),
                       const SizedBox(width: 12.0),
                       Column(

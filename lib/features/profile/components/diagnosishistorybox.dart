@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 
-class Diagnosishistorybox extends StatefulWidget {
-  const Diagnosishistorybox({super.key});
+// ignore: must_be_immutable
+class Diagnosishistorybox extends StatelessWidget {
+  String date;
+  String disease;
+  String medicine;
+  String imageUrl;
 
-  @override
-  State<Diagnosishistorybox> createState() => _DiagnosishistoryboxState();
-}
+  Diagnosishistorybox({
+    super.key,
+    required this.date,
+    required this.disease,
+    required this.medicine,
+    required this.imageUrl,
+  });
 
-class _DiagnosishistoryboxState extends State<Diagnosishistorybox> {
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Color(0xFFEEEEEE),
+        color: const Color(0xFFEEEEEE),
       ),
       height: 200,
       width: double.infinity,
@@ -24,11 +31,11 @@ class _DiagnosishistoryboxState extends State<Diagnosishistorybox> {
             const SizedBox(
               height: 15,
             ),
-            const Row(
+            Row(
               children: [
-                Text("Benign Diagnosis"),
-                Spacer(),
-                Text("20 July 2024"),
+                const Text("Benign Diagnosis"),
+                const Spacer(),
+                Text(date),
               ],
             ),
             const SizedBox(
@@ -37,21 +44,28 @@ class _DiagnosishistoryboxState extends State<Diagnosishistorybox> {
             Row(
               children: [
                 // Column for text items, aligned to the top-left
-                const Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start, // Align texts to the left
-                  mainAxisAlignment:
-                      MainAxisAlignment.start, // Align texts to the top
-                  children: [
-                    Text("Disease is Benign Kurtosis"),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text("Probable Medicine is: "),
-                    Text("Prescription Hydrogen Peroxide")
-                  ],
+                ConstrainedBox(
+                  constraints:
+                      BoxConstraints(maxWidth: 200.0), // Set a maximum width
+                  child: Column(
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start, // Align texts to the left
+                    mainAxisAlignment:
+                        MainAxisAlignment.start, // Align texts to the top
+                    children: [
+                      Text(
+                        "Disease is $disease",
+                        maxLines: null,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text("Probable Medicine is: "),
+                      Text(medicine)
+                    ],
+                  ),
                 ),
-                Spacer(), // Pushes the image to the right
+                const Spacer(), // Pushes the image to the right
                 // Container for the image with border radius and smaller size
                 Container(
                   width: 100, // Smaller width for the image
@@ -59,9 +73,10 @@ class _DiagnosishistoryboxState extends State<Diagnosishistorybox> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
                         12), // Border radius for rounded corners
-                    image: const DecorationImage(
+                    image: DecorationImage(
                       image: NetworkImage(
-                          "https://www.health.com/thmb/8mYiMYhvNgKi6gezwrsPXa2r6XM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-177384156_0-2000-7d742889400d4f0ba5233f297f2a31d2.jpg"), // Replace with your image URL
+                        imageUrl,
+                      ), // Replace with your image URL
                       fit: BoxFit.cover, // How the image should be fitted
                     ),
                   ),

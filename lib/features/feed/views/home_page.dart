@@ -1,8 +1,8 @@
 import 'package:apocalypsea2sv/features/Diagnosis/views/archive_page.dart';
 import 'package:apocalypsea2sv/features/Diagnosis/views/more_tips.dart';
-import 'package:apocalypsea2sv/features/Diagnosis/views/profile.dart';
 import 'package:apocalypsea2sv/features/detection/pages/start_diagnosis.dart';
 import 'package:apocalypsea2sv/features/feed/components/user_profile.dart';
+import 'package:apocalypsea2sv/features/profile/profile.dart';
 import 'package:apocalypsea2sv/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:apocalypsea2sv/config/ui_colors.dart';

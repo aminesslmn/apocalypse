@@ -5,6 +5,11 @@ import 'package:apocalypsea2sv/features/detection/pages/diagnosis_done.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:path/path.dart' as path;
 
 class DetectService {
   final Dio _dio = Dio();
@@ -33,12 +38,39 @@ class DetectService {
       if (response.statusCode == 200) {
         Map<String, dynamic> data = response.data as Map<String, dynamic>;
 
+        User? user = FirebaseAuth.instance.currentUser;
+        if (user == null) {
+          _showError(context, 'User not logged in');
+          return false;
+        }
+
+        String fileName = path.basename(image.path);
+        Reference storageReference = FirebaseStorage.instance
+            .ref()
+            .child('diagnosis_images/${user.uid}/$fileName');
+
+        UploadTask uploadTask = storageReference.putFile(image);
+        TaskSnapshot snapshot = await uploadTask;
+
+        print("UPLOADED");
+
+        String downloadURL = await snapshot.ref.getDownloadURL();
+
+        print("GOT URL $downloadURL");
+
+        await FirebaseFirestore.instance.collection('diagnoses').add({
+          'userId': user.uid,
+          'imageUrl': downloadURL,
+          'disease': data["data"]["disease"],
+          'timestamp': FieldValue.serverTimestamp(),
+        });
+
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => DiagnosisDone(
               diagnosis_: data["data"],
-              imageURL_: image!.path,
+              imageURL_: image.path,
             ),
           ),
         );

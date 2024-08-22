@@ -13,7 +13,7 @@ class DiagnosisDone extends StatelessWidget {
     diagnosis = DiagnosisResponseAPI(
       disease_: diagnosis_?["disease"],
       accuracy_: diagnosis_?["accuracy"],
-      medicine_: diagnosis_?["medicine"],
+      medicine_: diagnosis_?["medicine"] ?? "",
       causes_: diagnosis_?["llm_response"]["causes"],
       description_: diagnosis_?["llm_response"]["description"],
       treatement_: diagnosis_?["llm_response"]["treatement"],

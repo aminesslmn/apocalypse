@@ -1,10 +1,10 @@
-import 'package:apocalypsea2sv/features/Diagnosis/views/profile.dart';
 import 'package:apocalypsea2sv/features/Diagnosis/views/tips_pages_wrapper.dart';
 import 'package:apocalypsea2sv/features/detection/pages/start_diagnosis.dart';
 import 'package:apocalypsea2sv/features/doctor/components/doctor_nav_bar.dart';
 import 'package:apocalypsea2sv/features/doctor/views/verification_details.dart';
 import 'package:apocalypsea2sv/features/feed/components/navbar.dart';
 import 'package:apocalypsea2sv/features/feed/components/user_profile.dart';
+import 'package:apocalypsea2sv/features/profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class HomeVerified extends StatelessWidget {
@@ -20,7 +20,7 @@ class HomeVerified extends StatelessWidget {
         const HomeVerifiedPageContent(),
         const VerificationDetailPage(),
         const DailyTipsPage(),
-        const ProfilePage(),
+        ProfilePage(),
       ],
     );
   }

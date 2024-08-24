@@ -125,7 +125,7 @@ class PatientFeedbackPage extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            //handle this
+                            _showDiagnosisDialog(context);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -157,7 +157,7 @@ class PatientFeedbackPage extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            // Handle 'Mark as Correct' action
+                            _showConfirmDialog(context);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -265,6 +265,224 @@ class PatientFeedbackPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _showDiagnosisDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          title: const Text('Please Diagnose this state'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              DropdownButton<String>(
+                hint: const Text('Choose the disease'),
+                items: <String>[
+                  'Diagnosis 1',
+                  'Diagnosis 2',
+                  'Diagnosis 3',
+                ].map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (String? value) {
+                  // handle the value
+                },
+              ),
+              const SizedBox(height: 20.0),
+              const Text(
+                'If it is a different disease, please enter the name of the disease',
+                style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Disease name',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Brief description',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Back',
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10.0),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context); //just popping for now
+                      _showConfirmDialog(context); 
+                    },
+                    child: const Text(
+                      'Confirm',
+                      style: TextStyle(
+                        color: Color(0xFF47CFD6),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showConfirmDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          contentPadding: const EdgeInsets.all(16.0),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  'assets/skin_disease.png',
+                  width: 100.0,
+                  height: 100.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(height: 12.0),
+              const Text(
+                'Benign Keratosis',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Color(0xFFFF8156),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8.0),
+              const Text(
+                'Accuracy: 63.96%',
+                style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 12.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Color(0xFF47CFD6),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      side: BorderSide(color: Color(0xFF47CFD6)),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.cancel, color: Color(0xFF47CFD6)),
+                        const SizedBox(width: 8.0),
+                        const Text(
+                          'Mark as Wrong',
+                          style: TextStyle(color: Color(0xFF47CFD6)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Color(0xFF47CFD6),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      side: BorderSide(color: Color(0xFF47CFD6)),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.check, color: Color(0xFF47CFD6)),
+                        const SizedBox(width: 8.0),
+                        const Text(
+                          'Mark as Correct',
+                          style: TextStyle(color: Color(0xFF47CFD6)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Back',
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10.0),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context); //pops for now, handle later
+                    },
+                    child: const Text(
+                      'Confirm',
+                      style: TextStyle(
+                        color: Color(0xFF47CFD6),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

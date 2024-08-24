@@ -21,7 +21,7 @@ class HomeVerified extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BottomNavBar(
       screens: [
-        // Replace this with other screens if needed
+        // doctor screens
         HomeVerifiedPageContent(),
         VerificationDetailPage(),
         DailyTipsPage(),

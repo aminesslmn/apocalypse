@@ -1,3 +1,4 @@
+import 'package:apocalypsea2sv/config/func.dart';
 import 'package:apocalypsea2sv/features/Profile/components/diagnosishistorybox.dart';
 import 'package:apocalypsea2sv/features/Profile/components/Profileshow.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -36,12 +37,6 @@ class _ProfilePageState extends State<ProfilePage> {
     return snapshot.docs
         .map((doc) => doc.data() as Map<String, dynamic>)
         .toList();
-  }
-
-  String formatTimestamp(Timestamp timestamp) {
-    DateTime date = timestamp.toDate();
-    DateFormat formatter = DateFormat('dd MMM yyyy');
-    return formatter.format(date);
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:apocalypsea2sv/config/func.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -24,12 +25,6 @@ class ModelResponseItem extends StatefulWidget {
 
 class _ModelResponseItemState extends State<ModelResponseItem> {
   bool _isButtonDisabled = false;
-
-  String _formatTimestamp(Timestamp timestamp) {
-    DateTime date = timestamp.toDate();
-    DateFormat formatter = DateFormat('dd MMM yyyy');
-    return formatter.format(date);
-  }
 
   void _updateValidationStatus(BuildContext context, bool isValid) async {
     // setState(() {
@@ -91,7 +86,7 @@ class _ModelResponseItemState extends State<ModelResponseItem> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              _formatTimestamp(widget.date), // Replace with your date data
+              formatTimestamp(widget.date), // Replace with your date data
               style: const TextStyle(
                 fontSize: 12.0,
                 color: Colors.grey,

@@ -40,8 +40,6 @@ class HomeVerifiedPageContent extends StatefulWidget {
 }
 
 class _HomeVerifiedPageContentState extends State<HomeVerifiedPageContent> {
-  late Future<List<Map<String, dynamic>>> _diagnosisHistory;
-
   @override
   void initState() {
     super.initState();

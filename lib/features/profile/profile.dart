@@ -86,7 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Diagnosishistorybox(
                               disease: entry["disease"],
                               imageUrl: entry["imageUrl"],
-                              medicine: "", // temporary
+                              medicine: "Not Mentioned", // temporary
                               date: formatTimestamp(entry["timestamp"]),
                             ),
                           );

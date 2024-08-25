@@ -216,7 +216,7 @@ class _HomeVerifiedPageContentState extends State<HomeVerifiedPageContent> {
 
   Widget _buildPatientRequestsList() {
     return SizedBox(
-      height: 175.0,
+      height: 185.0,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 3,

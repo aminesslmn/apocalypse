@@ -66,9 +66,13 @@ class HomeContentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // we re accessing the authprovider to get patient's info
     final authProvider = Provider.of<AuthProvider>(context);
+    final String userName = authProvider.user?.displayName ?? "Default name";
+    final String userEmail = authProvider.user?.email ?? "Default email";
 
-    // Replace these with actual asset paths in your project's assets folder
+
+    // assets paths here
     final List<String> imageAssetPaths = [
       'assets/image1.png',
       'assets/image2.png',
@@ -111,9 +115,8 @@ class HomeContentPage extends StatelessWidget {
           children: [
             const Header(headerText: "Welcome!"),
             UserProfile(
-              userName: authProvider.user?.displayName ?? "Mohcen Chouireb",
-              userEmail:
-                  authProvider.user?.email ?? "raid.ouahioune@ensia.edu.dz",
+              userName: userName,
+              userEmail: userEmail,
             ),
             const SizedBox(height: 12.0),
             const HealthTip(

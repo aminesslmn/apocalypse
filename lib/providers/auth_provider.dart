@@ -28,20 +28,27 @@ class AuthProvider with ChangeNotifier {
   String? get password => _password;
   String? get error => _error;
 
-  AuthProvider() {
-    _loadUserFromPreferences();
-    _firebaseAuth.authStateChanges().listen(_onAuthStateChanged);
-  }
+AuthProvider() {
+  _loadUserFromPreferences(); //loads saved info from preferences
+  _firebaseAuth.authStateChanges().listen(_onAuthStateChanged); //listens to auth state changesr
+}
 
-  void _onAuthStateChanged(User? firebaseUser) {
-    _user = firebaseUser;
-    if (_user != null) {
-      _saveUserToPreferences();
-    } else {
-      _clearUserPreferences();
-    }
-    notifyListeners();
+
+
+  
+
+void _onAuthStateChanged(User? firebaseUser) {
+  print('Auth state changed, User: $firebaseUser');
+  _user = firebaseUser;
+  if (_user != null) {
+    _saveUserToPreferences();
+    _loadUserDetails();
+  } else {
+    _clearUserPreferences();
   }
+  notifyListeners();
+}
+
 
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     _setLoading(true);
@@ -121,21 +128,23 @@ class AuthProvider with ChangeNotifier {
     await prefs.setString('allergy', _allergy ?? '');
   }
 
-  Future<void> _loadUserFromPreferences() async {
-    final prefs = await SharedPreferences.getInstance();
-    _email = prefs.getString('email');
-    _fullName = prefs.getString('fullName');
-    _age = prefs.getString('age');
-    _gender = prefs.getString('gender');
-    _healthCondition = prefs.getString('healthCondition');
-    _allergy = prefs.getString('allergy');
+Future<void> _loadUserFromPreferences() async {
+  final prefs = await SharedPreferences.getInstance();
+  _email = prefs.getString('email');
+  _fullName = prefs.getString('fullName');
+  _age = prefs.getString('age');
+  _gender = prefs.getString('gender');
+  _healthCondition = prefs.getString('healthCondition');
+  _allergy = prefs.getString('allergy');
 
-    if (_email != null && _fullName != null) {
-      // Automatically log in user if we have stored details
-      _user = FirebaseAuth.instance.currentUser;
-      notifyListeners();
-    }
+  print('Loaded from preferences: $_email, $_fullName, $_age, $_gender, $_healthCondition, $_allergy');
+
+  if (_email != null && _fullName != null) {
+    _user = FirebaseAuth.instance.currentUser;
+    notifyListeners();
   }
+}
+
 
   Future<void> _clearUserPreferences() async {
     final prefs = await SharedPreferences.getInstance();
@@ -147,21 +156,27 @@ class AuthProvider with ChangeNotifier {
     await prefs.remove('allergy');
   }
 
-  Future<void> _loadUserDetails() async {
-    if (_user != null) {
-      DocumentSnapshot doc =
-          await _firestore.collection('users').doc(_user!.uid).get();
-      if (doc.exists) {
-        final data = doc.data() as Map<String, dynamic>;
-        _fullName = data['fullName'];
-        _age = data['age'];
-        _gender = data['gender'];
-        _healthCondition = data['healthCondition'];
-        _allergy = data['allergy'];
-        notifyListeners();
-      }
+Future<void> _loadUserDetails() async {
+  if (_user != null) {
+    DocumentSnapshot doc =
+        await _firestore.collection('users').doc(_user!.uid).get();
+    if (doc.exists) {
+      final data = doc.data() as Map<String, dynamic>;
+      _fullName = data['fullName'];
+      _age = data['age'];
+      _gender = data['gender'];
+      _healthCondition = data['healthCondition'];
+      _allergy = data['allergy'];
+      notifyListeners();
+
+      // verify user data loading
+      print('User details loaded: $_fullName, $_age, $_gender, $_healthCondition, $_allergy');
+    } else {
+      print('Document does not exist');
     }
   }
+}
+
 
   Map<String, dynamic> toJson() {
     return {

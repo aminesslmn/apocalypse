@@ -1,5 +1,10 @@
 import 'package:apocalypsea2sv/config/ui_colors.dart';
+import 'package:apocalypsea2sv/features/feed/views/home_page.dart';
+import 'package:apocalypsea2sv/features/feed/views/welcome_page.dart';
+import 'package:apocalypsea2sv/providers/auth_provider.dart';
+import 'package:apocalypsea2sv/providers/doctor_auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -165,14 +170,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         42),
                                     height: 50,
                                     child: ElevatedButton(
-                                      onPressed: () {
+                                      onPressed: () async {
                                         if (_formKey.currentState!.validate()) {
                                           if (currentStep < 2) {
                                             setState(() {
                                               currentStep++;
                                             });
                                           } else {
-                                            // Handle form submission
+                                            // Access the providers
+                                            final authProvider =
+                                                Provider.of<AuthProvider>(
+                                                    context,
+                                                    listen: false);
+                                            final doctorAuthProvider =
+                                                Provider.of<DoctorAuthProvider>(
+                                                    context,
+                                                    listen: false);
+
+                                            // Extract values from controllers
+                                            final email = isPatient
+                                                ? _patientEmailController.text
+                                                : _doctorEmailController.text;
+                                            final password = isPatient
+                                                ? _patientPasswordController
+                                                    .text
+                                                : _doctorPasswordController
+                                                    .text;
+
+                                            if (isPatient) {
+                                              // For patients
+                                              await authProvider
+                                                  .signInWithEmailAndPassword(
+                                                      email, password);
+                                            } else {
+                                              // For doctors
+                                              await doctorAuthProvider
+                                                  .signInAsDoctor(
+                                                      email, password);
+                                            }
+
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const HomePage(),
+                                              ),
+                                            );
                                             print('Form submitted');
                                           }
                                         }

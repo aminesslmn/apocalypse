@@ -1,13 +1,13 @@
 import 'package:apocalypsea2sv/config/ui_colors.dart';
 import 'package:apocalypsea2sv/features/feed/views/home_page.dart';
-import 'package:apocalypsea2sv/features/feed/views/welcome_page.dart';
+
 import 'package:apocalypsea2sv/providers/auth_provider.dart';
 import 'package:apocalypsea2sv/providers/doctor_auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  const RegisterScreen({super.key});
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -155,6 +155,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           key: _formKey,
                           child: Column(
                             children: [
+                              Text(
+                                Provider.of<AuthProvider>(context,
+                                            listen: false)
+                                        .error ??
+                                    '',
+                                style: const TextStyle(color: Colors.red),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
                               if (isPatient)
                                 _buildPatientForm()
                               else
@@ -200,22 +210,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             if (isPatient) {
                                               // For patients
                                               await authProvider
-                                                  .signInWithEmailAndPassword(
+                                                  .createUserWithEmailAndPassword(
                                                       email, password);
                                             } else {
                                               // For doctors
                                               await doctorAuthProvider
-                                                  .signInAsDoctor(
-                                                      email, password);
+                                                  .registerDoctor(
+                                                      email, password, {
+                                                'name':
+                                                    _doctorNameController.text,
+                                                'country':
+                                                    _doctorCountryController
+                                                        .text,
+                                                'speciality':
+                                                    _doctorSpecialityController
+                                                        .text,
+                                                'yearsOfExp':
+                                                    _doctorYearsOfExpController
+                                                        .text,
+                                              });
                                             }
 
-                                            Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const HomePage(),
-                                              ),
-                                            );
+                                            print(
+                                                'Error: ${authProvider.error}');
+
+                                            if (authProvider.error == null) {
+                                              // Navigate to the home page
+
+                                              Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const HomePage(),
+                                                ),
+                                              );
+                                            }
                                             print('Form submitted');
                                           }
                                         }

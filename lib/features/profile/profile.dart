@@ -1,10 +1,10 @@
 import 'package:apocalypsea2sv/config/func.dart';
-import 'package:apocalypsea2sv/features/Profile/components/diagnosishistorybox.dart';
-import 'package:apocalypsea2sv/features/Profile/components/Profileshow.dart';
+import 'package:apocalypsea2sv/features/profile/components/diagnosishistorybox.dart';
+import 'package:apocalypsea2sv/features/profile/components/profileshow.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

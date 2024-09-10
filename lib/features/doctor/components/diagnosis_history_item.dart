@@ -72,6 +72,5 @@ class DiagnosisHistoryItem extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

@@ -1,9 +1,7 @@
-import 'package:apocalypsea2sv/features/detection/pages/diagnosis_done.dart';
 import 'package:apocalypsea2sv/features/doctor/views/account_not_accepted.dart';
 import 'package:apocalypsea2sv/features/doctor/views/account_pending.dart';
 import 'package:apocalypsea2sv/features/doctor/views/home_verified.dart';
-import 'package:apocalypsea2sv/features/doctor/views/verification_details.dart';
-import 'package:apocalypsea2sv/features/doctor/views/verification_page.dart';
+
 import 'package:apocalypsea2sv/features/feed/views/login_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/register_page.dart';
 import 'package:apocalypsea2sv/features/feed/views/welcome_page.dart';
@@ -48,7 +46,7 @@ class MyApp extends StatelessWidget {
           '/register-details': (context) => const RegisterDetailsScreen(),
           '/home': (context) => const HomePage(),
           '/login': (context) => const LoginScreen(),
-          '/profile': (context) => ProfilePage(),
+          '/profile': (context) => const ProfilePage(),
         },
       ),
     );

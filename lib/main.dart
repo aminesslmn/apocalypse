@@ -22,8 +22,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -60,24 +62,13 @@ class AppWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
-    final doctorAuthProvider = Provider.of<DoctorAuthProvider>(context);
-
-    if (doctorAuthProvider.doctorUser != null) {
-      switch (doctorAuthProvider.status) {
-        case 'pending':
-          return const AccountPending();
-        case 'accepted':
-          return const HomeVerified();
-        case 'rejected':
-          return const AccountNotAccepted();
-        default:
-          return const WelcomePage();
-      }
-    } else if (authProvider.user != null) {
-      return const HomePage();
+    //final authProvider = Provider.of<AuthProvider>(context);
+    //final doctorAuthProvider = Provider.of<DoctorAuthProvider>(context);
+      final authProvider = Provider.of<AuthProvider>(context);
+    if (authProvider.isLoggedIn) {
+      return const HomePage(); // User is logged in, show HomePage
     } else {
-      return const WelcomePage();
+      return const WelcomePage(); // User is not logged in, show WelcomePage
     }
   }
 }

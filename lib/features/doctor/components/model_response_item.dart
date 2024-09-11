@@ -24,7 +24,7 @@ class ModelResponseItem extends StatefulWidget {
 }
 
 class _ModelResponseItemState extends State<ModelResponseItem> {
-  bool _isButtonDisabled = false;
+  final bool _isButtonDisabled = false;
 
   void _updateValidationStatus(BuildContext context, bool isValid) async {
     // setState(() {

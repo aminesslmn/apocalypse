@@ -1,10 +1,3 @@
-import 'package:apocalypsea2sv/features/detection/pages/start_diagnosis.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:apocalypsea2sv/features/Diagnosis/views/tips_pages_wrapper.dart';
-import 'package:apocalypsea2sv/features/feed/views/home_page.dart';
-import 'package:apocalypsea2sv/features/profile/profile.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,10 +6,10 @@ class BottomNavBar extends StatefulWidget {
   final int initialIndex;
 
   const BottomNavBar({
-    Key? key,
+    super.key,
     required this.screens,
     this.initialIndex = 0,
-  }) : super(key: key);
+  });
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -128,4 +121,3 @@ class _BottomNavBarState extends State<BottomNavBar> {
     }
   }
 }
-

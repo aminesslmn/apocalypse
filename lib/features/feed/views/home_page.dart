@@ -1,5 +1,4 @@
 import 'package:apocalypsea2sv/features/Diagnosis/views/archive_page.dart';
-import 'package:apocalypsea2sv/features/Diagnosis/views/more_tips.dart';
 import 'package:apocalypsea2sv/features/detection/pages/start_diagnosis.dart';
 import 'package:apocalypsea2sv/features/feed/components/user_profile.dart';
 import 'package:apocalypsea2sv/features/profile/profile.dart';
@@ -34,8 +33,8 @@ class _HomePageState extends State<HomePage> {
 
   // List of pages to navigate
   final List<Widget> _screens = [
-    HomeContentPage(), // Page 0
-    StartDiagnosisPage(), // Page 1
+    const HomeContentPage(), // Page 0
+    const StartDiagnosisPage(), // Page 1
     const DailyTipsPage(), // Page 2
     const ProfilePage(), // Page 3
   ];
@@ -62,7 +61,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class HomeContentPage extends StatelessWidget {
-  HomeContentPage({super.key});
+  const HomeContentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +69,6 @@ class HomeContentPage extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context);
     final String userName = authProvider.user?.displayName ?? "Default name";
     final String userEmail = authProvider.user?.email ?? "Default email";
-
 
     // assets paths here
     final List<String> imageAssetPaths = [
@@ -89,21 +87,21 @@ class HomeContentPage extends StatelessWidget {
         'title': 'Check Skin Health',
         'backgroundColor': AppColors.secondaryColor1,
         'iconColor': AppColors.iconColor1,
-        'route': StartDiagnosisPage(), // Navigate to StartDiagnosisPage
+        'route': const StartDiagnosisPage(), // Navigate to StartDiagnosisPage
       },
       {
         'svgPath': "assets/icons/archive.svg",
         'title': 'Diagnoses History',
         'backgroundColor': AppColors.secondaryColor2,
         'iconColor': AppColors.iconColor2,
-        'route': ArchivePage(),
+        'route': const ArchivePage(),
       },
       {
         'svgPath': "assets/icons/lamp-charge.svg",
         'title': 'More Health Tips',
         'backgroundColor': AppColors.secondaryColor3,
         'iconColor': AppColors.iconColor3,
-        'route': DailyTipsPage(),
+        'route': const DailyTipsPage(),
       },
     ];
 

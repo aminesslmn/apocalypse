@@ -10,11 +10,19 @@ class Profileshow extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
 
+    // Access the user's name and email from the AuthProvider
+    final String userName = authProvider.userName.isNotEmpty
+        ? authProvider.userName
+        : "Default Name"; // Replace "Default Name" with a fallback value if needed
+
+    final String userEmail = authProvider.userEmail.isNotEmpty
+        ? authProvider.userEmail
+        : "default.email@example.com"; // Replace with a fallback value if needed
+
     return Container(
-      
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Color(0xFF00ABB6),
+        color: const Color(0xFF00ABB6),
       ),
       height: 140,
       width: double.infinity,
@@ -22,26 +30,24 @@ class Profileshow extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            SizedBox(
-              height: 15,
-            ),
+            const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Profile picture
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 19,
-
                   backgroundImage: NetworkImage(
-                      'https://media.istockphoto.com/id/1482650271/photo/working-hard-to-hit-a-deadline.jpg?s=612x612&w=0&k=20&c=xwrHxUoVvx7XtQz18aA2qkpnTMSiqIiKlMZkL7AuyFM='), // Use a real image URL
+                    'https://media.istockphoto.com/id/1482650271/photo/working-hard-to-hit-a-deadline.jpg?s=612x612&w=0&k=20&c=xwrHxUoVvx7XtQz18aA2qkpnTMSiqIiKlMZkL7AuyFM='
+                  ), // Use a real image URL
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 // Name and email
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      authProvider.user?.displayName ?? "Mohcen Chouireb",
+                      userName,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -49,7 +55,7 @@ class Profileshow extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      authProvider.user?.email ?? "raid.ouahioune@ensia.edu.dz",
+                      userEmail,
                       style: const TextStyle(
                         fontSize: 14,
                         color: Colors.white,
@@ -66,15 +72,14 @@ class Profileshow extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Profilesettings()),
+                        builder: (context) => const Profilesettings(),
+                      ),
                     );
                   },
                 ),
               ],
             ),
-            const SizedBox(
-              height: 25,
-            ),
+            const SizedBox(height: 25),
             const Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -93,8 +98,7 @@ class Profileshow extends StatelessWidget {
                 Spacer(),
                 // Diagnosis icon
                 Icon(
-                  Icons
-                      .medical_services, // Or use a different icon that represents diagnosis
+                  Icons.medical_services, // Or use a different icon that represents diagnosis
                   color: Colors.white,
                   size: 12,
                 ),
@@ -105,7 +109,7 @@ class Profileshow extends StatelessWidget {
                   style: TextStyle(fontSize: 12, color: Colors.white),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
